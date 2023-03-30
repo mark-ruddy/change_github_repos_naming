@@ -54,7 +54,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     println!("token is: {}", token);
 
     let client = Client::new();
-    let request_url = format!("https://api.github.com/user/repos?per_page=100");
+    let request_url = format!("https://api.github.com/user/repos?per_page=9999");
 
     let resp = client
         .get(&request_url)
@@ -62,15 +62,15 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .header("Authorization", format!("Bearer {}", token))
         .send()
         .await?;
-    let repo_names = resp.json::<Vec<Repo>>().await?;
+    let repos = resp.json::<Vec<Repo>>().await?;
 
     /*
-    for repo in repo_names {
+    for repo in repos {
         println!("repo name: {}", repo.name);
     }
     */
 
-    for repo in repo_names {
+    for repo in repos {
         let updated_name = format_name(&repo.name, &format);
         if updated_name == repo.name {
             println!("Skipping repo {}, no change after formatting", repo.name);

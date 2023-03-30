@@ -3,6 +3,8 @@ Change all of your repos(including private) from snake case to kebab case and vi
 
 Created this after flip-flopping a couple times on which one I preferred. I think kebab case is usually better for URLs and package names but snake case is better for nearly everything else(directory names, code, etc.), and decided I wanted all my repos, Rust crate packages etc., to just be snake case for simplicity.  
 
+BUG: Right now the code doesn't support githubs pagination, and requests 9999 per page size, but I believe the max is 100 per page. If you have more than 100 repos, this script may not work for all of them.
+
 ## Usage
 Clone this repo: `git clone https://github.com/mark-ruddy/change_github_repos_naming`
 
